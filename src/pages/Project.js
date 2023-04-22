@@ -32,7 +32,7 @@ const Project = (props) => {
     useBlurSetState(".label-modal", isInviting, setIsInviting);
 
     const { data: project, loading, setData: setProject } = useAxiosGet(
-        `/projects/${id}/`
+        `/project/${id}/`
     );
     const { data: boards, addItem: addBoard } = useAxiosGet(
         "/boards?project=" + id

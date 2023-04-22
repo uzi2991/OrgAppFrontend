@@ -25,18 +25,17 @@ function App() {
 
   if (authUser)
     return (
-      // <>
-      //     <Route path="/" component={Header} />
-      //     <Switch>
-      //         <Route exact path="/" component={Home} />
-      //         <Route exact path="/b/:id" component={Board} />
-      //         <Route exact path="/test" component={AddBoardModal} />
-      //         <Route exact path="/p/:id" component={Project} />
-      //         <Route path="" component={Error404} />
-      //     </Switch>
-      // </>
-  
-      <btn onClick={logout}>Logout</btn>
+      <>
+          <Route path="/" component={Header} />
+          <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/b/:id" component={Board} />
+              <Route exact path="/test" component={AddBoardModal} />
+              <Route exact path="/p/:id" component={Project} />
+              <Route path="" component={Error404} />
+          </Switch>
+      </>
+
     );
   else
     return (
