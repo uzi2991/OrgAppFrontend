@@ -37,17 +37,17 @@ const Project = (props) => {
     const { data: boards, addItem: addBoard } = useAxiosGet(
         "/boards?project=" + id
     );
-    useDocumentTitle(project ? `${project.title} | Trello` : "");
+    useDocumentTitle(project ? `${project.name} | Trello` : "");
 
     if (!project && loading) return null;
     if (!project && !loading) return <Error404 />; // No project with given id
 
     // Project exists
-    const authUserMembership = project.members.find(
-        (member) => member.username === authUser.username
-    );
-    if (!authUserMembership) return <Error404 />; // Not a member
-    const authUserAccessLevel = authUserMembership.access_level;
+    // const authUserMembership = project.members.find(
+    //     (member) => member.email === authUser.email
+    // );
+    // if (!authUserMembership) return <Error404 />; // Not a member
+    // const authUserAccessLevel = authUserMembership.access_level;
 
     return (
         <div className="team">
@@ -60,8 +60,8 @@ const Project = (props) => {
                         />
                         {!isEditing ? (
                             <div className="team__profile">
-                                <p>{project.title}</p>
-                                {authUserAccessLevel === 2 && (
+                                <p>{project.name}</p>
+                                {/* {authUserAccessLevel === 2 && (
                                     <button
                                         className="btn btn--secondary btn--medium"
                                         onClick={() => setIsEditing(true)}
@@ -69,7 +69,7 @@ const Project = (props) => {
                                         <i className="fal fa-pen"></i> Edit Team
                                         Profile
                                     </button>
-                                )}
+                                )} */}
                             </div>
                         ) : (
                             <EditForm
@@ -82,7 +82,7 @@ const Project = (props) => {
                     <ul className="team__header-bottom">
                         <li
                             className={`team__tab${
-                                curTab == 1 ? " team__tab--active" : ""
+                                curTab === 1 ? " team__tab--active" : ""
                             }`}
                             onClick={() => setCurTab(1)}
                         >
@@ -90,7 +90,7 @@ const Project = (props) => {
                         </li>
                         <li
                             className={`team__tab${
-                                curTab == 2 ? " team__tab--active" : ""
+                                curTab === 2 ? " team__tab--active" : ""
                             }`}
                             onClick={() => setCurTab(2)}
                         >
@@ -98,7 +98,7 @@ const Project = (props) => {
                         </li>
                         <li
                             className={`team__tab${
-                                curTab == 3 ? " team__tab--active" : ""
+                                curTab === 3 ? " team__tab--active" : ""
                             }`}
                         >
                             Settings
@@ -125,7 +125,7 @@ const Project = (props) => {
                     <div className="team__members">
                         <div className="team__members-header">
                             <p>Team Members ({project.members.length})</p>
-                            {authUserAccessLevel === 2 && (
+                            {/* {authUserAccessLevel === 2 && (
                                 <button
                                     className="btn btn--medium"
                                     onClick={() => setIsInviting(true)}
@@ -133,10 +133,10 @@ const Project = (props) => {
                                     <i className="fal fa-user-plus"></i> Invite
                                     Team Members
                                 </button>
-                            )}
+                            )} */}
                         </div>
                         <ul className="team__members-list">
-                            {project.members.map((member) => (
+                            {/* {project.members.map((member) => (
                                 <Member
                                     key={uuidv4()}
                                     user={member}
@@ -146,17 +146,17 @@ const Project = (props) => {
                                     }}
                                     setProject={setProject}
                                 />
-                            ))}
+                            ))} */}
                         </ul>
                     </div>
                 )}
             </div>
-            {authUserAccessLevel === 2 && isInviting && (
+            {/* {authUserAccessLevel === 2 && isInviting && (
                 <InviteMembersModal
                     project={project}
                     setShowModal={setIsInviting}
                 />
-            )}
+            )} */}
         </div>
     );
 };

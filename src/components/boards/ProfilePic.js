@@ -17,11 +17,11 @@ const getNameColor = (name) => {
 
 const ProfilePic = ({ user, large }) => (
   <div
-    className={`member member--${getNameColor(user.email)}${
+    className={`member member--${getNameColor(user.first_name)}${
       large ? ' member--large' : ''
     }`}
   >
-    {user.email.substring(0, 1).toUpperCase()}
+    {user.first_name.substring(0, 1).toUpperCase()}
   </div>
 );
 

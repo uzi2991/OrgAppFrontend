@@ -42,8 +42,8 @@ const GlobalProvider = (props) => {
     history.push('/login');
   };
 
-  const setBoardContext = (board, setBoard) => {
-    dispatch({ type: SET_BOARD_CONTEXT, board, setBoard });
+  const setBoardContext = (project, setProject) => {
+    dispatch({ type: SET_BOARD_CONTEXT, project, setProject });
   };
 
   return (

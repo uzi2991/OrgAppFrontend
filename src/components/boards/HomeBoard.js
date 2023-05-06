@@ -6,21 +6,21 @@ import { Link } from "react-router-dom";
 import { authAxios } from "../../static/js/util";
 import { backendUrl } from "../../static/js/const";
 
-const HomeBoard = ({ board, replaceBoard }) => {
-    const toggleFavorite = async (e) => {
-        e.preventDefault(); // Prevent anchor link wrapped around board from redirecting us
-        await authAxios.post(`${backendUrl}/boards/star/`, {
-            board: board.id,
-        });
-        replaceBoard({
-            ...board,
-            is_starred: !board.is_starred,
-        });
-    };
+const HomeBoard = ({ project, replaceProject }) => {
+    // const toggleFavorite = async (e) => {
+    //     e.preventDefault(); // Prevent anchor link wrapped around board from redirecting us
+    //     await authAxios.post(`${backendUrl}/boards/star/`, {
+    //         board: board.id,
+    //     });
+    //     replaceBoard({
+    //         ...board,
+    //         is_starred: !board.is_starred,
+    //     });
+    // };
 
     return (
-        <Link to={`/b/${board.id}`} className="board-preview">
-            <button
+        <Link to={`/project/${project._id}`} className="board-preview">
+            {/* <button
                 className={`board-preview__star${
                     board.is_starred ? " board-preview__star--starred" : ""
                 }`}
@@ -31,24 +31,24 @@ const HomeBoard = ({ board, replaceBoard }) => {
                 ) : (
                     <i className="fas fa-star"></i>
                 )}
-            </button>
-            {board.color ? (
+            </button> */}
+            {/* {project.color ? (
                 <div
                     className="board-preview__color"
-                    style={{ backgroundColor: `#${board.color}` }}
+                    style={{ backgroundColor: `#${project.color}` }}
                 ></div>
             ) : (
                 <div className="board-preview__image">
                     <img src={board.image || board.image_url} />
                 </div>
-            )}
+            )} */}
             <p
                 className="board-preview__title"
-                style={{ marginBottom: board.members ? "1em" : 0 }}
+                style={{ marginBottom: project.members ? "1em" : 0 }}
             >
-                {board.title}
+                {project.name}
             </p>
-            {board.members && <Members members={board.members} />}
+            {/* {project.members && <Members members={project.members} />} */}
         </Link>
     );
 };

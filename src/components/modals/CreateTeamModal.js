@@ -31,7 +31,7 @@ const CreateTeamModal = ({ setShowModal, addProject }) => {
         data,
       );
       if (invitedMembers.length !== 0) {
-        await authAxios.post(backendUrl + `/project/${resData.id}/invite/`, {
+        await authAxios.post(backendUrl + `/project/${resData._id}/invite/`, {
           users: invitedMembers,
         });
       }

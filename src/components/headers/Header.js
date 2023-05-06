@@ -84,7 +84,7 @@ const Header = (props) => {
           <ul className="header__list">
             <li className="header__li header__li--profile">
               <ProfilePic user={authUser} large={true} />
-              Hello, {authUser.email}
+              Hello, {authUser.first_name}
             </li>
             <li className="header__li header__li--notifications">
               <button onClick={() => setShowNotifications(true)}>

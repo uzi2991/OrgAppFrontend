@@ -9,7 +9,7 @@ export const globalReducer = (state, action) => {
         case LOGOUT:
             return { ...state, authUser: null, checkedAuth: true };
         case SET_BOARD_CONTEXT:
-            return { ...state, board: action.board, setBoard: action.setBoard };
+            return { ...state, project: action.project, setProject: action.setProject };
         default:
             return state;
     }

@@ -15,13 +15,14 @@ const Home = () => {
   const [showAddBoardModal, setShowAddBoardModal] = useState(false);
   const [boardProject, setBoardProject] = useState(0); // If 0, we are making a personal board. Else, making board for project with given ID
   const [showTeamModal, setShowTeamModal] = useState(false);
-  const { data: projects, addItem: addProject } = useAxiosGet('/project/');
+  const { data: projects, addItem: addProject, replaceItem: replaceProject } = useAxiosGet('/project/');
   const {
     data: boards,
     addItem: addBoard,
     replaceItem: replaceBoard,
   } = useAxiosGet('/boards/'); // replaceBoard when you star or unstar
   const { data: recentlyViewedBoards } = useAxiosGet('/boards/?sort=recent');
+  const { data: recentlyViewedProjects } = useAxiosGet('/project/?sort=recent');
   const [userBoards, projectBoards, starredBoards] = filterBoards(boards);
 
   // if (!boards) return null;
@@ -34,7 +35,7 @@ const Home = () => {
           projects={projects || []}
         />
         <div className="home">
-          {starredBoards.length !== 0 && (
+          {/* {starredBoards.length !== 0 && (
             <>
               <div className="home__section">
                 <p className="home__title">
@@ -51,10 +52,9 @@ const Home = () => {
                 ))}
               </div>
             </>
-          )}
+          )} */}
 
-          {(recentlyViewedBoards || []).length !== 0 &&
-            starredBoards.length === 0 && (
+          {(recentlyViewedProjects || []).length !== 0 && (
               <>
                 <div className="home__section">
                   <p className="home__title">
@@ -62,10 +62,10 @@ const Home = () => {
                   </p>
                 </div>
                 <div className="home__boards">
-                  {recentlyViewedBoards.map((board) => (
+                  {recentlyViewedProjects.map((project) => (
                     <HomeBoard
-                      board={board}
-                      replaceBoard={replaceBoard}
+                      project={project}
+                      replaceProject={replaceProject}
                       key={uuidv4()}
                     />
                   ))}
@@ -73,7 +73,7 @@ const Home = () => {
               </>
             )}
 
-          <div className="home__section">
+          {/* <div className="home__section">
             <p className="home__title">
               <i className="fal fa-user"></i> Personal Boards
             </p>
@@ -86,36 +86,36 @@ const Home = () => {
             >
               <i className="fal fa-plus"></i> Create
             </button>
-          </div>
+          </div> */}
           <div className="home__boards">
-            {userBoards.map((board) => (
+            {/* {userBoards.map((board) => (
               <HomeBoard
                 board={board}
                 replaceBoard={replaceBoard}
                 key={uuidv4()}
               />
-            ))}
+            ))} */}
           </div>
 
-          {projectBoards.map((project) => (
+          {/* {projectBoards.map((project) => (
             <React.Fragment key={uuidv4()}>
               <div className="home__section">
                 <p className="home__title">
                   <i className="fal fa-users"></i> {project.name}
                 </p>
                 <div>
-                  <Link className="btn btn--secondary" to={`/p/${project._id}`}>
+                  <Link className="btn btn--secondary" to={`/project/${project._id}`}>
                     <i className="fab fa-trello"></i> Boards
                   </Link>
                   <Link
                     className="btn btn--secondary"
-                    to={`/p/${project.id}?tab=2`}
+                    to={`/project/${project._id}?tab=2`}
                   >
                     <i className="fal fa-user"></i> Members
                   </Link>
                   <Link
                     className="btn btn--secondary"
-                    to={`/p/${project.id}?tab=3`}
+                    to={`/project/${project._id}?tab=3`}
                   >
                     <i className="fal fa-cogs"></i> Settings
                   </Link>
@@ -140,7 +140,7 @@ const Home = () => {
                 ))}
               </div>
             </React.Fragment>
-          ))}
+          ))} */}
         </div>
       </div>
       {showTeamModal && (
@@ -149,13 +149,13 @@ const Home = () => {
           addProject={addProject}
         />
       )}
-      {showAddBoardModal && (
+      {/* {showAddBoardModal && (
         <AddBoardModal
           setShowAddBoardModal={setShowAddBoardModal}
           addBoard={addBoard}
           project={boardProject}
         />
-      )}
+      )} */}
     </>
   );
 };
