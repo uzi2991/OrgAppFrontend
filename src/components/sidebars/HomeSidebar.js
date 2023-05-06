@@ -5,24 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 const HomeSidebar = ({ setShowTeamModal, projects }) => {
   return (
     <div className="home-menu">
-      {/* <ul>
-        <li>
-          <a className="btn btn--transparent btn--small btn--active">
-            <i className="fab fa-trello"></i> Boards
-          </a>
-        </li>
-        <li>
-          <a className="btn btn--transparent btn--small">
-            <i className="fal fa-ruler-triangle"></i> Templates
-          </a>
-        </li>
-        <li>
-          <a className="btn btn--transparent btn--small">
-            <i className="fal fa-newspaper"></i> Feed
-          </a>
-        </li>
-      </ul> */}
-
       <div className="home-menu__section">
         <p className="home-menu__title">Projects</p>
         <a className="btn btn--transparent btn--small">
@@ -39,7 +21,7 @@ const HomeSidebar = ({ setShowTeamModal, projects }) => {
               className="btn btn--transparent btn--small"
               key={uuidv4()}
             >
-              <i className="fal fa-users"></i> {project.name}
+              <i className="fal fa-users"></i> {project.title}
             </Link>
           ))}
         </li>

@@ -7,6 +7,10 @@
     display: flex;
     flex-direction: column; // So we can make up lists take up remaining space
 
+    &__header {
+        display: flex;
+    }
+
     &__title,
     &__title-edit {
         font-weight: 500;
@@ -43,7 +47,7 @@
         width: 100%;
         overflow-x: auto;
 
-        & > .list {
+        &>.list {
             margin: 0.5em 1em 0;
 
             &:first-of-type {
@@ -116,7 +120,7 @@
             height: 25px;
         }
 
-        & > .far {
+        &>.far {
             color: $secondary-text;
         }
     }
@@ -145,7 +149,7 @@
         min-height: calc(100% - 110px);
         overflow-y: auto;
 
-        & > .card {
+        &>.card {
             margin: 1em 0;
 
             &:first-of-type {
@@ -242,6 +246,7 @@
 
     &__image {
         height: 125px;
+
         img {
             border-radius: 5px 5px 0 0;
             width: 100%;

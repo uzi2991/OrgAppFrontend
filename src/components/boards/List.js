@@ -8,6 +8,7 @@ import { authAxios } from '../../static/js/util';
 import { backendUrl } from '../../static/js/const';
 import { updateList, addCard } from '../../static/js/board';
 import globalContext from '../../context/globalContext';
+import { deleteList } from '../../static/js/board';
 
 const getListStyle = (isDragging, defaultStyle) => {
   if (!isDragging) return defaultStyle;
@@ -30,7 +31,7 @@ const getListTitleStyle = (isDragging, defaultStyle) => {
 };
 
 const List = ({ list, index }) => {
-  const { board, setBoard } = useContext(globalContext);
+  const { project, setProject } = useContext(globalContext);
   const [addingCard, setAddingCard] = useState(false);
   const [cardTitle, setCardTitle] = useState('');
   const [editingTitle, setEditingTitle] = useState(false);
@@ -42,11 +43,11 @@ const List = ({ list, index }) => {
     e.preventDefault();
     if (cardTitle.trim() === '') return;
     const { data } = await authAxios.post(`${backendUrl}/boards/items/`, {
-      list: list.id,
+      list: list._id,
       title: cardTitle,
     });
     setAddingCard(false);
-    addCard(board, setBoard)(list.id, data);
+    addCard(project, setProject)(list._id, data);
   };
 
   const listCards = useRef(null);
@@ -63,6 +64,10 @@ const List = ({ list, index }) => {
     }
   }, [editingTitle]);
 
+  const handleDelete = async (e) => {
+    await authAxios.delete(`${backendUrl}/list/${list._id}`);
+    deleteList(project, setProject)(list);
+  };
   return (
     <Draggable draggableId={'list' + list._id.toString()} index={index}>
       {(provided, snapshot) => {
@@ -96,7 +101,7 @@ const List = ({ list, index }) => {
               ) : (
                 <EditList list={list} setEditingTitle={setEditingTitle} />
               )}
-              <i className="far fa-ellipsis-h"></i>
+              <i className="far fa-times" onClick={handleDelete}></i>
             </div>
             <Droppable droppableId={list._id.toString()} type="item">
               {(provided) => (
@@ -168,19 +173,16 @@ const AddCard = ({ onAddCard, cardTitle, setCardTitle }) => (
 );
 
 const EditList = ({ list, setEditingTitle }) => {
-  const { board, setBoard } = useContext(globalContext);
+  const { project, setProject } = useContext(globalContext);
   const [listTitle, setListTitle] = useState(list.title);
 
   const onEditList = async (e) => {
     e.preventDefault();
     if (listTitle.trim() === '') return;
-    const { data } = await authAxios.put(
-      `${backendUrl}/boards/lists/${list.id}/`,
-      {
-        title: listTitle,
-      },
-    );
-    updateList(board, setBoard)(data);
+    const { data } = await authAxios.post(`${backendUrl}/list/${list._id}/`, {
+      title: listTitle,
+    });
+    updateList(project, setProject)(data);
     setEditingTitle(false);
   };
 

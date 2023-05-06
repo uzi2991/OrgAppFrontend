@@ -16,8 +16,8 @@ const GlobalProvider = (props) => {
   const [globalState, dispatch] = useReducer(globalReducer, {
     authUser: null,
     checkedAuth: false,
-    board: null,
-    setBoard: null,
+    project: null,
+    setProject: null,
   });
 
   const login = async (resData) => {
@@ -51,8 +51,8 @@ const GlobalProvider = (props) => {
       value={{
         authUser: globalState.authUser,
         checkedAuth: globalState.checkedAuth,
-        board: globalState.board,
-        setBoard: globalState.setBoard,
+        project: globalState.project,
+        setProject: globalState.setProject,
         checkAuth,
         login,
         logout,

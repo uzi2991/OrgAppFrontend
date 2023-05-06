@@ -43,7 +43,7 @@ const Board = (props) => {
     }
   }, [project]);
 
-  useDocumentTitle(project ? `${project.name} | Trello` : '');
+  useDocumentTitle(project ? `${project.title} | Trello` : '');
   useBlurSetState('.board__create-list-form', addingList, setAddingList);
   const [editingTitle, setEditingTitle] = useState(false);
   useBlurSetState('.board__title-edit', editingTitle, setEditingTitle);
@@ -57,21 +57,28 @@ const Board = (props) => {
   if (!project && !loading) return <Error404 />;
   return (
     <div className="board" style={getBoardStyle(project)}>
-      {!editingTitle ? (
-        <p
-          className="board__title"
-          onClick={() => setEditingTitle(true)}
-          style={isBackgroundDark ? { color: 'white' } : null}
-        >
-          {project.name}
-        </p>
-      ) : (
-        <EditBoard
-          setEditingTitle={setEditingTitle}
-          project={project}
-          setProject={setProject}
-        />
-      )}
+      <div className="board__menu">
+        {!editingTitle ? (
+          <p
+            className="board__title"
+            onClick={() => setEditingTitle(true)}
+            style={isBackgroundDark ? { color: 'white' } : null}
+          >
+            {project.title}
+          </p>
+        ) : (
+          <EditBoard
+            setEditingTitle={setEditingTitle}
+            project={project}
+            setProject={setProject}
+          />
+        )}
+
+        <button className="btn board__settings">
+          <i className="far fa-cog"></i> Settings
+        </button>
+      </div>
+
       {/* <p className="board__subtitle">{project.owner.title}</p> */}
       <DragDropContext onDragEnd={onDragEnd(project, setProject)}>
         <Droppable
@@ -86,7 +93,7 @@ const Board = (props) => {
               {...provided.droppableProps}
             >
               {project.lists.map((list, index) => (
-                <List list={list} index={index} key={uuidv4()} />
+                <List list={list} index={index} key={list._id} />
               ))}
               {provided.placeholder}
               {addingList ? (
@@ -150,18 +157,19 @@ const CreateList = ({ project, setProject, setAddingList }) => {
 };
 
 const EditBoard = ({ project, setProject, setEditingTitle }) => {
-  const [title, setTitle] = useState(project.name);
+  const [title, setTitle] = useState(project.title);
 
   const onEditTitle = async (e) => {
     e.preventDefault();
     console.log('Submit');
     if (title.trim() === '') return;
-    const { data } = await authAxios.put(
+    const { data } = await authAxios.post(
       `${backendUrl}/project/${project._id}/`,
       {
-        name: title,
+        title,
       },
     );
+
     setProject(data);
     setEditingTitle(false);
   };

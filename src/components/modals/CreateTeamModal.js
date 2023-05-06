@@ -9,11 +9,11 @@ import { useForm } from 'react-hook-form';
 const CreateTeamModal = ({ setShowModal, addProject }) => {
   useEffect(modalBlurHandler(setShowModal), []);
   const { register, handleSubmit, errors, watch } = useForm();
-  const nameValue = watch('name', '');
+  const titleValue = watch('title', '');
 
   const animateFaces = () => {
     const face1 = document.querySelector('.create-team__face--1');
-    if (nameValue !== '') {
+    if (titleValue !== '') {
       face1.style.top = '230px';
       face1.style.left = '60px';
     }
@@ -52,12 +52,12 @@ const CreateTeamModal = ({ setShowModal, addProject }) => {
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="name">Project Name</label>
+          <label htmlFor="title">Project Title</label>
           <input
-            name="name"
+            name="title"
             ref={register({ required: true })}
             type="text"
-            placeholder="Project Name"
+            placeholder="Project Title"
             onBlur={animateFaces}
           />
 
@@ -76,7 +76,7 @@ const CreateTeamModal = ({ setShowModal, addProject }) => {
             placeholder="Type in email"
           />
 
-          {nameValue.trim() !== '' ? (
+          {titleValue.trim() !== '' ? (
             <button type="submit" className="btn">
               Create Project
             </button>

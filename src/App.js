@@ -31,7 +31,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/project/:id" component={Board} />
               <Route exact path="/test" component={AddBoardModal} />
-              {/* <Route exact path="/project/:id" component={Project} /> */}
+              <Route exact path="/project/:id/info" component={Project} />
               <Route path="" component={Error404} />
           </Switch>
       </>

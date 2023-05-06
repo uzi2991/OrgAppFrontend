@@ -46,7 +46,7 @@ const HomeBoard = ({ project, replaceProject }) => {
                 className="board-preview__title"
                 style={{ marginBottom: project.members ? "1em" : 0 }}
             >
-                {project.name}
+                {project.title}
             </p>
             {/* {project.members && <Members members={project.members} />} */}
         </Link>

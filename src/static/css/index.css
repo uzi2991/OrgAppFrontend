@@ -1,15 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;900&display=swap");
-@import url("https://pro.fontawesome.com/releases/v5.10.0/css/all.css");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;900&display=swap');
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
 html {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
   -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 html,
@@ -134,7 +134,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 
@@ -160,8 +160,8 @@ button:focus {
 }
 
 button,
-input[type="submit"],
-input[type="reset"] {
+input[type='submit'],
+input[type='reset'] {
   background: none;
   color: inherit;
   border: none;
@@ -175,19 +175,35 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-button, input, select, textarea, input::-webkit-input-placeholder {
+button,
+input,
+select,
+textarea,
+input::-webkit-input-placeholder {
   font-family: 'Montserrat', sans-serif;
 }
 
-button, input, select, textarea, input:-ms-input-placeholder {
+button,
+input,
+select,
+textarea,
+input:-ms-input-placeholder {
   font-family: 'Montserrat', sans-serif;
 }
 
-button, input, select, textarea, input::-ms-input-placeholder {
+button,
+input,
+select,
+textarea,
+input::-ms-input-placeholder {
   font-family: 'Montserrat', sans-serif;
 }
 
-button, input, select, textarea, input::placeholder {
+button,
+input,
+select,
+textarea,
+input::placeholder {
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -303,7 +319,7 @@ button, input, select, textarea, input::placeholder {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 4px;
 }
 
@@ -338,25 +354,25 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   color: #838282;
   background: white;
 }
 
 .header__section:nth-of-type(1) {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .header__section:nth-of-type(3) {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .header__section:nth-of-type(3) .header__list {
@@ -368,7 +384,7 @@ button, input, select, textarea, input::placeholder {
 
 .header__logo {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 35px;
   width: 114px;
 }
@@ -378,8 +394,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .header__li {
@@ -392,8 +408,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 0.7em 0.7em;
   border-radius: 5px;
   background-color: white;
@@ -440,8 +456,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .header__li--profile > .member {
@@ -506,11 +522,21 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
-.board__title, .board__title-edit {
+.board__menu {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.board__settings {
+  margin-left: auto;
+}
+
+.board__title,
+.board__title-edit {
   font-weight: 500;
   font-size: 1.25rem;
   height: 25px;
@@ -540,8 +566,8 @@ button, input, select, textarea, input::placeholder {
 
 .board__lists {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -587,7 +613,7 @@ button, input, select, textarea, input::placeholder {
   height: fit-content;
   border-radius: 5px;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .board__create-list-form input {
@@ -615,14 +641,14 @@ button, input, select, textarea, input::placeholder {
   border: 0;
   border-radius: 5px;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .list__title {
@@ -632,11 +658,11 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .list__title p {
@@ -755,12 +781,13 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
   margin-top: 1.5em;
 }
 
-.card__image, .card__color {
+.card__image,
+.card__color {
   width: calc(100% + 1.5em);
   height: 65px;
   margin-left: -0.75em;
@@ -777,7 +804,7 @@ button, input, select, textarea, input::placeholder {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .card--image .card__title {
@@ -859,7 +886,7 @@ button, input, select, textarea, input::placeholder {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   width: 925px;
   padding: 2em;
 }
@@ -872,15 +899,16 @@ button, input, select, textarea, input::placeholder {
 
 .edit-modal__left {
   -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
+  -ms-flex: 3;
+  flex: 3;
 }
 
 .edit-modal__left > .labels {
   margin-bottom: 0.875em;
 }
 
-.edit-modal__title, .edit-modal__title-edit {
+.edit-modal__title,
+.edit-modal__title-edit {
   height: 25px;
   font-weight: 500;
   font-size: 1.25em;
@@ -926,8 +954,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   color: #838282;
   margin-bottom: 1.25em;
 }
@@ -938,8 +966,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 130px;
 }
 
@@ -995,8 +1023,8 @@ button, input, select, textarea, input::placeholder {
 .edit-modal__right {
   margin-left: 2em;
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .edit-modal__right > .edit-modal__section-header:first-of-type {
@@ -1020,8 +1048,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin-bottom: 0.7em;
 }
 
@@ -1040,25 +1068,25 @@ button, input, select, textarea, input::placeholder {
 
 .attachment img {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   height: 100%;
   border-radius: 5px;
 }
 
 .attachment__content {
   -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
+  -ms-flex: 2;
+  flex: 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   margin-left: 1.5em;
 }
 
@@ -1089,8 +1117,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin-bottom: 1em;
 }
 
@@ -1099,8 +1127,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .comment__info {
@@ -1162,8 +1190,8 @@ button, input, select, textarea, input::placeholder {
 
 .search-suggestions__cards .card__image {
   -webkit-box-flex: 3;
-      -ms-flex: 3;
-          flex: 3;
+  -ms-flex: 3;
+  flex: 3;
   margin: 0;
   margin-left: -0.75em;
   margin-top: -0.75em;
@@ -1174,14 +1202,14 @@ button, input, select, textarea, input::placeholder {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   max-height: 125px;
 }
 
 .search-suggestions__cards .card > div:last-of-type {
   -webkit-box-flex: 4;
-      -ms-flex: 4;
-          flex: 4;
+  -ms-flex: 4;
+  flex: 4;
   border: 0;
   margin-left: 1em;
 }
@@ -1198,8 +1226,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .search-suggestions__boards li {
@@ -1260,11 +1288,11 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   color: white;
   background: transparent;
 }
@@ -1275,7 +1303,7 @@ button, input, select, textarea, input::placeholder {
 
 .landing-header__logo {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   height: 35px;
   width: 114px;
 }
@@ -1297,8 +1325,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .landing-header__li {
@@ -1319,11 +1347,11 @@ button, input, select, textarea, input::placeholder {
 
 .landing-banner__image {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 100vw;
   height: 100vh;
   -webkit-filter: brightness(80%);
-          filter: brightness(80%);
+  filter: brightness(80%);
 }
 
 .landing-banner__content {
@@ -1332,7 +1360,7 @@ button, input, select, textarea, input::placeholder {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -1360,8 +1388,8 @@ button, input, select, textarea, input::placeholder {
 
 .home-menu {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   padding-right: 1.5em;
 }
 
@@ -1370,11 +1398,11 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin-bottom: 0.25em;
 }
 
@@ -1395,8 +1423,8 @@ button, input, select, textarea, input::placeholder {
 
 .home {
   -webkit-box-flex: 5;
-      -ms-flex: 5;
-          flex: 5;
+  -ms-flex: 5;
+  flex: 5;
   padding-left: 1.5em;
 }
 
@@ -1405,11 +1433,11 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin-bottom: 1.5em;
 }
 
@@ -1439,7 +1467,7 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-bottom: 1em;
 }
 
@@ -1477,7 +1505,7 @@ button, input, select, textarea, input::placeholder {
 
 .board-preview__star:hover {
   -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .board-preview__star--starred {
@@ -1502,8 +1530,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .board-preview__members p {
@@ -1513,7 +1541,8 @@ button, input, select, textarea, input::placeholder {
   font-size: 0.75rem;
 }
 
-.board-preview__image, .board-preview__color {
+.board-preview__image,
+.board-preview__color {
   width: calc(100% + 2em);
   height: 125px;
   margin-left: -1em;
@@ -1526,7 +1555,7 @@ button, input, select, textarea, input::placeholder {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .create-team {
@@ -1537,7 +1566,7 @@ button, input, select, textarea, input::placeholder {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   width: 925px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1546,8 +1575,8 @@ button, input, select, textarea, input::placeholder {
 
 .create-team__form {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   padding: 3em 0 3em 3em;
 }
 
@@ -1601,9 +1630,9 @@ button, input, select, textarea, input::placeholder {
 
 .create-team__bg {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  background-image: url("../img/teambg.svg");
+  -ms-flex: 1;
+  flex: 1;
+  background-image: url('../img/teambg.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: right;
@@ -1647,7 +1676,7 @@ button, input, select, textarea, input::placeholder {
 
 .slideshow__img {
   -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   height: auto;
   max-width: 100%;
 }
@@ -1679,8 +1708,8 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .sidebar--left {
@@ -1719,8 +1748,8 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: 81%;
   margin: auto;
   text-align: center;
@@ -1728,7 +1757,7 @@ button, input, select, textarea, input::placeholder {
 
 .login-fieldset__submit:hover {
   -webkit-transform: scale(0.9);
-          transform: scale(0.9);
+  transform: scale(0.9);
   cursor: pointer;
 }
 
@@ -1764,8 +1793,8 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   justify-items: space-evenly;
   margin-left: 10%;
   margin-right: 10%;
@@ -1774,8 +1803,8 @@ button, input, select, textarea, input::placeholder {
 
 .buttons > .btn {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .label-modal {
@@ -1789,8 +1818,8 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   z-index: 5;
   font-weight: 600;
   border-radius: 5px;
@@ -1825,8 +1854,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   color: #838282;
 }
 
@@ -1840,7 +1869,7 @@ button, input, select, textarea, input::placeholder {
 
 .label-modal__header > i:hover {
   -webkit-filter: brightness(70%);
-          filter: brightness(70%);
+  filter: brightness(70%);
 }
 
 .label-modal__labels-head {
@@ -1859,8 +1888,8 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   height: 15em;
   margin-bottom: 1.2em;
 }
@@ -1873,11 +1902,11 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
 }
 
 .label-modal__label > p {
@@ -1897,12 +1926,13 @@ button, input, select, textarea, input::placeholder {
 
 .label-modal__label > i:hover {
   -webkit-filter: brightness(70%);
-          filter: brightness(70%);
+  filter: brightness(70%);
 }
 
-.label-modal__label > p:hover, .label-modal__label--selected {
+.label-modal__label > p:hover,
+.label-modal__label--selected {
   -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  filter: brightness(90%);
 }
 
 .label-modal__create {
@@ -1919,10 +1949,10 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-flow: row;
-          flex-flow: row;
+  -ms-flex-flow: row;
+  flex-flow: row;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin: 0.6em 0.4em;
   padding-left: 0.6em;
 }
@@ -1945,12 +1975,12 @@ button, input, select, textarea, input::placeholder {
 
 .label-modal__create-label > button:hover {
   -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  filter: brightness(90%);
 }
 
 .label-modal__create-label--selected {
   -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  filter: brightness(90%);
 }
 
 .label-modal__create-label:last-of-type > button {
@@ -1986,8 +2016,10 @@ button, input, select, textarea, input::placeholder {
 }
 
 .label-modal--shadow {
-  -webkit-box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
-          box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25), 0 0 0 1px rgba(9, 30, 66, 0.08);
+  -webkit-box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25),
+    0 0 0 1px rgba(9, 30, 66, 0.08);
+  box-shadow: 0 8px 16px -4px rgba(9, 30, 66, 0.25),
+    0 0 0 1px rgba(9, 30, 66, 0.08);
   border: 1px solid rgba(211, 211, 211, 0.55);
 }
 
@@ -2054,7 +2086,7 @@ button, input, select, textarea, input::placeholder {
   top: 0;
   right: 50%;
   -webkit-transform: translateX(50%);
-          transform: translateX(50%);
+  transform: translateX(50%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2082,7 +2114,8 @@ button, input, select, textarea, input::placeholder {
   font-size: 1.125rem;
 }
 
-.addboard-modal__title:hover, .addboard-modal__title:focus {
+.addboard-modal__title:hover,
+.addboard-modal__title:focus {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -2135,14 +2168,14 @@ button, input, select, textarea, input::placeholder {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   color: white;
   font-size: 1.6rem;
 }
 
 .addboard-modal__color-box:hover {
   -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  filter: brightness(90%);
 }
 
 .addboard-modal__color-box--img {
@@ -2152,7 +2185,7 @@ button, input, select, textarea, input::placeholder {
 
 .addboard-modal__color-box--tick {
   -webkit-filter: brightness(70%);
-          filter: brightness(70%);
+  filter: brightness(70%);
 }
 
 .addboard-modal__color-box .fa-ellipsis-h {
@@ -2189,7 +2222,7 @@ button, input, select, textarea, input::placeholder {
   width: 80px;
   height: 80px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .team__profile {
@@ -2199,8 +2232,8 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .team__profile p {
@@ -2258,7 +2291,7 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   margin-bottom: 1em;
 }
 
@@ -2283,8 +2316,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   width: 900px;
   margin-bottom: 2.5em;
 }
@@ -2298,8 +2331,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin-bottom: 1.25em;
 }
 
@@ -2323,8 +2356,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin-left: auto;
   position: relative;
 }
@@ -2395,11 +2428,11 @@ button, input, select, textarea, input::placeholder {
 
 .error-page__image {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   width: 100vw;
   height: 100vh;
   -webkit-filter: brightness(80%);
-          filter: brightness(80%);
+  filter: brightness(80%);
 }
 
 .error-page__content {
@@ -2408,7 +2441,7 @@ button, input, select, textarea, input::placeholder {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -2453,8 +2486,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .notification__name {
@@ -2487,8 +2520,8 @@ button, input, select, textarea, input::placeholder {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   font-weight: 400;
   font-size: 0.875rem;
   color: #4680ff;
@@ -2508,14 +2541,14 @@ button, input, select, textarea, input::placeholder {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .label-modal__no-notif img {
