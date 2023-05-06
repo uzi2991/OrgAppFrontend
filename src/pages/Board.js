@@ -10,6 +10,7 @@ import { authAxios, handleBackgroundBrightness } from '../static/js/util';
 import { backendUrl } from '../static/js/const';
 import Error404 from './Error404';
 import globalContext from '../context/globalContext';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const getBoardStyle = (project) => {
   if (project.image || project.image_url)
@@ -74,9 +75,9 @@ const Board = (props) => {
           />
         )}
 
-        <button className="btn board__settings">
-          <i className="far fa-cog"></i> Settings
-        </button>
+        <Link to={`/project/${project._id}/info`} className="btn board__info">
+          <i className="far fa-info"></i> Project Info
+        </Link>
       </div>
 
       {/* <p className="board__subtitle">{project.owner.title}</p> */}

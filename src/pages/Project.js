@@ -109,10 +109,8 @@ const Project = (props) => {
                 <Member
                   key={uuidv4()}
                   user={member}
-                  authUser={{
-                    ...authUser,
-                    isAdmin,
-                  }}
+                  authUser={authUser}
+                  isAdmin={isAdmin}
                   project={project}
                   setProject={setProject}
                 />
@@ -179,14 +177,16 @@ const Member = ({ user, authUser, setProject, isAdmin, project }) => {
 
   const removeMember = async () => {
     try {
-      await authAxios.delete(backendUrl + `/projects/members/${user.id}/`);
-      if (authUser.username === user.username) {
+      await authAxios.post(backendUrl + `/project/${project._id}/remove`, {
+        userId: user._id,
+      });
+      if (authUser._id === user._id) {
         history.push('/');
         return;
       }
       setProject((project) => {
         const updatedMembers = project.members.filter(
-          (member) => member.id !== user.id,
+          (member) => member._id !== user._id,
         );
         project.members = updatedMembers;
         return { ...project };
@@ -206,15 +206,16 @@ const Member = ({ user, authUser, setProject, isAdmin, project }) => {
         <p className="team__member-username">{user.email}</p>
       </div>
       <div className="team__member-buttons">
-        {(authUser._id === user._id || isAdmin) && (
-          <button
-            className="btn btn--secondary btn--small"
-            onClick={removeMember}
-          >
-            <i className="fal fa-times"></i>
-            {authUser._id === user._id ? 'Leave' : 'Remove'}
-          </button>
-        )}
+        {(authUser._id === user._id || isAdmin) &&
+          user._id !== project.createdBy && (
+            <button
+              className="btn btn--secondary btn--small"
+              onClick={removeMember}
+            >
+              <i className="fal fa-times"></i>
+              {authUser._id === user._id ? 'Leave' : 'Remove'}
+            </button>
+          )}
       </div>
     </li>
   );
