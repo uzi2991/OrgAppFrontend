@@ -17,7 +17,7 @@ import globalContext from '../../context/globalContext';
 import NotificationsModal from '../modals/NotificationsModal';
 
 const Header = (props) => {
-  const { authUser, board } = useContext(globalContext);
+  const { authUser, project, logout } = useContext(globalContext);
 
   const [searchQuery, setSearchQuery] = useState(''); //This variable keeps track of what to show in the search bar
   const [backendQuery, setBackendQuery] = useState(''); //This variable is used to query the backend, debounced
@@ -41,7 +41,9 @@ const Header = (props) => {
 
   const onBoardPage = props.location.pathname.split('/')[1] === 'b';
   const [isBackgroundDark, setIsBackgroundDark] = useState(false);
-  useEffect(handleBackgroundBrightness(board, setIsBackgroundDark), [board]);
+  useEffect(handleBackgroundBrightness(project, setIsBackgroundDark), [
+    project,
+  ]);
 
   return (
     <>
@@ -84,7 +86,7 @@ const Header = (props) => {
           <ul className="header__list">
             <li className="header__li header__li--profile">
               <ProfilePic user={authUser} large={true} />
-              Hello, {authUser.first_name}
+              {authUser.first_name}
             </li>
             <li className="header__li header__li--notifications">
               <button onClick={() => setShowNotifications(true)}>
@@ -95,8 +97,8 @@ const Header = (props) => {
                             ) && <div className="header__unread"></div>} */}
             </li>
             <li className="header__li header__li--border">
-              <a>
-                <i className="fal fa-bars"></i>
+              <a onClick={logout}>
+                <i className="fal fa-sign-out"></i> Log out
               </a>
             </li>
           </ul>

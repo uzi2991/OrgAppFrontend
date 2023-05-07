@@ -197,37 +197,58 @@ export const updateList = (_, setBoard) => (updatedList) => {
   });
 };
 
-export const addCard = (board, setBoard) => (listId, newCard) => {
-  const newLists = board.lists.map((list) =>
-    list.id === listId ? { ...list, items: [...list.items, newCard] } : list,
+export const addCard = (project, setProject) => (listId, newCard) => {
+  const newLists = project.lists.map((list) =>
+    list._id === listId ? { ...list, items: [...list.items, newCard] } : list,
   );
 
-  const newBoard = {
-    ...board,
+  const newProject = {
+    ...project,
     lists: newLists,
   };
 
-  setBoard(newBoard);
+  setProject(newProject);
 };
 
-export const updateCard = (_, setBoard) => (listId, updatedCard) => {
-  setBoard((board) => {
-    const targetList = board.lists.find((list) => list.id === listId);
+export const updateCard = (_, setProject) => (listId, updatedCard) => {
+  setProject((project) => {
+    const targetList = project.lists.find((list) => list._id === listId);
     const newItems = targetList.items.map((item) =>
-      item.id === updatedCard.id ? updatedCard : item,
+      item._id === updatedCard._id ? updatedCard : item,
     );
     const newList = {
       ...targetList,
       items: newItems,
     };
-    const newLists = board.lists.map((list) =>
-      list.id === newList.id ? newList : list,
+    const newLists = project.lists.map((list) =>
+      list._id === newList._id ? newList : list,
     );
-    const newBoard = {
-      ...board,
+    const newProject = {
+      ...project,
       lists: newLists,
     };
-    return newBoard;
+    return newProject;
+  });
+};
+
+export const deleteCard = (_, setProject) => (listId, deletedCard) => {
+  setProject((project) => {
+    const targetList = project.lists.find((list) => list._id === listId);
+    const newItems = targetList.items.filter(
+      (item) => item._id !== deletedCard._id,
+    );
+    const newList = {
+      ...targetList,
+      items: newItems,
+    };
+    const newLists = project.lists.map((list) =>
+      list._id === newList._id ? newList : list,
+    );
+    const newProject = {
+      ...project,
+      lists: newLists,
+    };
+    return newProject;
   });
 };
 

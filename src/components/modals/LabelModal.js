@@ -27,12 +27,12 @@ const getLiContent = (data, selected) => {
 };
 
 const LabelModal = ({ list, card, cardElem, setShowModal }) => {
-    const { board, setBoard } = useContext(globalContext);
+    const { project, setProject } = useContext(globalContext);
     const [showCreateLabel, setShowCreateLabel] = useState(false);
     const labelElem = useRef(null);
     const [label, setLabel] = useState(null);
     const { data, replaceItem } = useAxiosGet(
-        `/boards/labels/?board=${board.id}`
+        `/boards/labels/?board=${project._id}`
     );
     const liContent = getLiContent(data, card.labels);
 
@@ -44,7 +44,7 @@ const LabelModal = ({ list, card, cardElem, setShowModal }) => {
                 labels: labelId,
             }
         );
-        updateCard(board, setBoard)(list.id, data);
+        updateCard(project, setProject)(list.id, data);
     };
 
     return (
@@ -129,7 +129,7 @@ const CreateLabel = ({ labelElem, setShowCreateLabel, label, replaceItem }) => {
             </div>
 
             <div className="label-modal__content">
-                <p className="label-modal__title">Name</p>
+                <p className="label-modal__title">Title</p>
                 <input
                     className="label-modal__input"
                     placeholder="Enter label name"

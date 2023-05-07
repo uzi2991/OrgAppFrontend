@@ -83,7 +83,7 @@ const Project = (props) => {
               Settings
             </li>
             <li
-              className={`team__tab${curTab == 4 ? ' team__tab--active' : ''}`}
+              className={`team__tab${curTab === 4 ? ' team__tab--active' : ''}`}
             >
               Business Class
             </li>
@@ -138,7 +138,7 @@ const EditForm = ({ project, setProject, setIsEditing }) => {
   const onSubmit = async (data) => {
     try {
       const { data: resData } = await authAxios.post(
-        `${backendUrl}/project/${project.id}/`,
+        `${backendUrl}/project/${project._id}/`,
         data,
       );
       setProject(resData);
@@ -156,7 +156,9 @@ const EditForm = ({ project, setProject, setIsEditing }) => {
       <textarea name="description" ref={register}></textarea>
 
       {titleValue.trim() !== '' ? (
-        <button className="btn btn--medium">Save</button>
+        <button className="btn btn--medium" type="submit">
+          Save
+        </button>
       ) : (
         <button className="btn btn--medium btn--disabled" disabled>
           Save

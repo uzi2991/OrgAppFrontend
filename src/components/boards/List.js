@@ -42,10 +42,11 @@ const List = ({ list, index }) => {
   const onAddCard = async (e) => {
     e.preventDefault();
     if (cardTitle.trim() === '') return;
-    const { data } = await authAxios.post(`${backendUrl}/boards/items/`, {
+    const { data } = await authAxios.post(`${backendUrl}/task/`, {
       list: list._id,
       title: cardTitle,
     });
+    console.log(data);
     setAddingCard(false);
     addCard(project, setProject)(list._id, data);
   };
@@ -68,6 +69,7 @@ const List = ({ list, index }) => {
     await authAxios.delete(`${backendUrl}/list/${list._id}`);
     deleteList(project, setProject)(list);
   };
+
   return (
     <Draggable draggableId={'list' + list._id.toString()} index={index}>
       {(provided, snapshot) => {
@@ -110,14 +112,14 @@ const List = ({ list, index }) => {
                   ref={mergeRefs(provided.innerRef, listCards)}
                   {...provided.droppableProps}
                 >
-                  {/* {list.items.map((card, index) => (
-                                        <DraggableCard
-                                            card={card}
-                                            list={list}
-                                            index={index}
-                                            key={uuidv4()}
-                                        />
-                                    ))} */}
+                  {list.items.map((card, index) => (
+                    <DraggableCard
+                      card={card}
+                      list={list}
+                      index={index}
+                      key={uuidv4()}
+                    />
+                  ))}
                   {provided.placeholder}
                   {addingCard && (
                     <AddCard
