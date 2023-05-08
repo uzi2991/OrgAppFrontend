@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm snapshot 1`] = `
+<div
+  className="login"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <fieldset
+      className="login-fieldset"
+    >
+      <input
+        className="sidebar-input border--gray border--onHoverBlue"
+        name="email"
+        placeholder="Email"
+        type="text"
+      />
+      <input
+        className="sidebar-input border--gray border--onHoverBlue"
+        name="password"
+        placeholder="Password"
+        type="password"
+      />
+      <button
+        className="btn btn--disabled"
+        disabled={true}
+      >
+         
+        Login
+         
+      </button>
+    </fieldset>
+  </form>
+</div>
+`;
