@@ -46,7 +46,6 @@ const List = ({ list, index }) => {
       list: list._id,
       title: cardTitle,
     });
-    console.log(data);
     setAddingCard(false);
     addCard(project, setProject)(list._id, data);
   };

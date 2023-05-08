@@ -120,7 +120,11 @@ const Project = (props) => {
         )}
       </div>
       {isAdmin && isInviting && (
-        <InviteMembersModal project={project} setShowModal={setIsInviting} />
+        <InviteMembersModal
+          project={project}
+          setProject={setProject}
+          setShowModal={setIsInviting}
+        />
       )}
     </div>
   );
@@ -190,8 +194,7 @@ const Member = ({ user, authUser, setProject, isAdmin, project }) => {
         const updatedMembers = project.members.filter(
           (member) => member._id !== user._id,
         );
-        project.members = updatedMembers;
-        return { ...project };
+        return { ...project, members: updatedMembers };
       });
     } catch (error) {
       console.log(error);

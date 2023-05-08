@@ -15,19 +15,26 @@ const getInviteMembersPosition = () => {
   };
 };
 
-const InviteMembersModal = ({ project, setShowModal }) => {
+const InviteMembersModal = ({ project, setProject, setShowModal }) => {
   const [members, setMembers] = useState('');
 
   const handleInvite = async () => {
-    console.log('Invite');
     const invitedMembers =
       members !== ''
         ? members.split(',').map((user) => user.trim()) // usernames and emails
         : [];
 
     try {
-      await authAxios.post(backendUrl + `/project/${project._id}/invite/`, {
-        users: invitedMembers,
+      const { data: newMembers } = await authAxios.post(
+        backendUrl + `/project/${project._id}/invite/`,
+        {
+          users: invitedMembers,
+        },
+      );
+
+      setProject((project) => {
+        const updatedMembers = [...project.members, ...newMembers];
+        return { ...project, members: updatedMembers };
       });
     } catch (error) {
       console.log(error);

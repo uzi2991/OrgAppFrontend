@@ -31,10 +31,16 @@ const CreateTeamModal = ({ setShowModal, addProject }) => {
         data,
       );
       if (invitedMembers.length !== 0) {
-        await authAxios.post(backendUrl + `/project/${resData._id}/invite/`, {
-          users: invitedMembers,
-        });
+        const { data: newMembers } = await authAxios.post(
+          backendUrl + `/project/${resData._id}/invite/`,
+          {
+            users: invitedMembers,
+          },
+        );
+
+        resData.members = [...resData.members, ...newMembers];
       }
+
       addProject(resData);
     } catch (error) {
       console.log(error);

@@ -39,7 +39,7 @@ const Header = (props) => {
   //     "/notifications/"
   // );
 
-  const onBoardPage = props.location.pathname.split('/')[1] === 'b';
+  const onProjectPage = props.location.pathname.split('/')[1] === 'project';
   const [isBackgroundDark, setIsBackgroundDark] = useState(false);
   useEffect(handleBackgroundBrightness(project, setIsBackgroundDark), [
     project,
@@ -49,14 +49,14 @@ const Header = (props) => {
     <>
       <header
         className={`header${
-          isBackgroundDark && onBoardPage ? ' header--transparent' : ''
+          isBackgroundDark && onProjectPage ? ' header--transparent' : ''
         }`}
       >
         <div className="header__section">
           <ul className="header__list">
             <li className="header__li">
               <a>
-                <i className="fab fa-trello"></i> Boards
+                <i className="fab fa-trello"></i> Projects
               </a>
             </li>
             <li
