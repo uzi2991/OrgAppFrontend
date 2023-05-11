@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm snapshot 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    className="login-fieldset"
+  >
+    <div
+      style={
+        Object {
+          "display": "block",
+        }
+      }
+    >
+      <input
+        className="sidebar-input border--gray border--onHoverBlue"
+        name="first_name"
+        placeholder="First Name"
+        type="text"
+      />
+      <input
+        className="sidebar-input border--gray border--onHoverBlue"
+        name="last_name"
+        placeholder="Last Name"
+        type="text"
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      <input
+        className="sidebar-input border--gray border--onHoverBlue"
+        name="email"
+        placeholder="Email"
+        type="email"
+      />
+      <input
+        className="sidebar-input border--gray border--onHoverBlue"
+        name="password"
+        placeholder="Password"
+        type="password"
+      />
+    </div>
+    <div
+      className="buttons"
+    >
+      <button
+        className="btn btn--disabled"
+        disabled={true}
+        id="next"
+        onClick={[Function]}
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</form>
+`;
