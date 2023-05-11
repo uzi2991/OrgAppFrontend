@@ -21,12 +21,9 @@ const defaultImageUrl =
 
 const Project = (props) => {
   const { id } = props.match.params;
-  const { tab } = qs.parse(props.location.search, {
-    ignoreQueryPrefix: true,
-  });
   const { authUser } = useContext(globalContext);
+  const history = useHistory();
 
-  const [curTab, setCurTab] = useState(tab || 2);
   const [isEditing, setIsEditing] = useState(false);
   const [isInviting, setIsInviting] = useState(false);
   useBlurSetState('.label-modal', isInviting, setIsInviting);
@@ -44,6 +41,15 @@ const Project = (props) => {
 
   const isAdmin = authUser._id === project.createdBy;
 
+  const handleDeleteProject = async (e) => {
+    try {
+      await authAxios.delete(`${backendUrl}/project/${id}/`);
+      history.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="team">
       <div className="team__header">
@@ -54,12 +60,20 @@ const Project = (props) => {
               <div className="team__profile">
                 <p>{project.title}</p>
                 {isAdmin && (
-                  <button
-                    className="btn btn--secondary btn--medium"
-                    onClick={() => setIsEditing(true)}
-                  >
-                    <i className="fal fa-pen"></i> Edit Team Profile
-                  </button>
+                  <>
+                    <button
+                      className="btn btn--secondary btn--medium"
+                      onClick={() => setIsEditing(true)}
+                    >
+                      <i className="fal fa-pen"></i> Edit Project Profile
+                    </button>
+                    <button
+                      className="btn btn--secondary btn--medium"
+                      onClick={handleDeleteProject}
+                    >
+                      <i className="fal fa-trash"></i> Delete Project
+                    </button>
+                  </>
                 )}
               </div>
             ) : (
@@ -70,54 +84,34 @@ const Project = (props) => {
               />
             )}
           </div>
-          <ul className="team__header-bottom">
-            <li
-              className={`team__tab${curTab === 2 ? ' team__tab--active' : ''}`}
-              onClick={() => setCurTab(2)}
-            >
-              Members
-            </li>
-            <li
-              className={`team__tab${curTab === 3 ? ' team__tab--active' : ''}`}
-            >
-              Settings
-            </li>
-            <li
-              className={`team__tab${curTab === 4 ? ' team__tab--active' : ''}`}
-            >
-              Business Class
-            </li>
-          </ul>
         </div>
       </div>
       <div className="team__body">
-        {curTab === 2 && (
-          <div className="team__members">
-            <div className="team__members-header">
-              <p>Team Members ({project.members.length})</p>
-              {isAdmin && (
-                <button
-                  className="btn btn--medium"
-                  onClick={() => setIsInviting(true)}
-                >
-                  <i className="fal fa-user-plus"></i> Invite Team Members
-                </button>
-              )}
-            </div>
-            <ul className="team__members-list">
-              {project.members.map((member) => (
-                <Member
-                  key={uuidv4()}
-                  user={member}
-                  authUser={authUser}
-                  isAdmin={isAdmin}
-                  project={project}
-                  setProject={setProject}
-                />
-              ))}
-            </ul>
+        <div className="team__members">
+          <div className="team__members-header">
+            <p>Team Members ({project.members.length})</p>
+            {isAdmin && (
+              <button
+                className="btn btn--medium"
+                onClick={() => setIsInviting(true)}
+              >
+                <i className="fal fa-user-plus"></i> Invite Team Members
+              </button>
+            )}
           </div>
-        )}
+          <ul className="team__members-list">
+            {project.members.map((member) => (
+              <Member
+                key={uuidv4()}
+                user={member}
+                authUser={authUser}
+                isAdmin={isAdmin}
+                project={project}
+                setProject={setProject}
+              />
+            ))}
+          </ul>
+        </div>
       </div>
       {isAdmin && isInviting && (
         <InviteMembersModal

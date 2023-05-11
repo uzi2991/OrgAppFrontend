@@ -59,28 +59,19 @@ const Board = (props) => {
   return (
     <div className="board" style={getBoardStyle(project)}>
       <div className="board__menu">
-        {!editingTitle ? (
-          <p
-            className="board__title"
-            onClick={() => setEditingTitle(true)}
-            style={isBackgroundDark ? { color: 'white' } : null}
-          >
-            {project.title}
-          </p>
-        ) : (
-          <EditBoard
-            setEditingTitle={setEditingTitle}
-            project={project}
-            setProject={setProject}
-          />
-        )}
+        <p
+          className="board__title"
+          onClick={() => setEditingTitle(true)}
+          style={isBackgroundDark ? { color: 'white' } : null}
+        >
+          {project.title}
+        </p>
 
         <Link to={`/project/${project._id}/info`} className="btn board__info">
           <i className="far fa-info"></i> Project Info
         </Link>
       </div>
 
-      {/* <p className="board__subtitle">{project.owner.title}</p> */}
       <DragDropContext onDragEnd={onDragEnd(project, setProject)}>
         <Droppable
           droppableId={'board' + project._id.toString()}
