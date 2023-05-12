@@ -187,7 +187,7 @@ export const deleteList = (project, setProject) => (list) => {
 export const updateList = (_, setBoard) => (updatedList) => {
   setBoard((board) => {
     const newLists = board.lists.map((list) =>
-      list.id === updatedList.id ? updatedList : list,
+      list._id === updatedList._id ? updatedList : list,
     );
     const newBoard = {
       ...board,

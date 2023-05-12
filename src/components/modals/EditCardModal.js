@@ -9,10 +9,14 @@ import { timeSince, modalBlurHandler, authAxios } from '../../static/js/util';
 import { backendUrl } from '../../static/js/const';
 import { updateCard } from '../../static/js/board';
 import ProfilePic from '../boards/ProfilePic';
+import AssignMemberModel from './AssignMemberModal';
+import { deleteCard } from '../../static/js/board';
 
 const EditCardModal = ({ card, list, setShowModal }) => {
   const [editingTitle, setEditingTitle] = useState(false);
   const [editingDescription, setEditingDescription] = useState(false);
+  const [showAssignMemberModal, setShowAssignMemberModal] = useState(false);
+  const { project, setProject } = useContext(globalContext);
 
   useEffect(modalBlurHandler(setShowModal), []);
   useBlurSetState('.edit-modal__title-edit', editingTitle, setEditingTitle);
@@ -22,12 +26,10 @@ const EditCardModal = ({ card, list, setShowModal }) => {
     setEditingDescription,
   );
 
-  // const {
-  //     data: comments,
-  //     addItem: addComment,
-  //     replaceItem: replaceComment,
-  //     removeItem: removeComment,
-  // } = useAxiosGet(`/boards/comments/?item=${card.id}`);
+  const handleDeleteCard = async (e) => {
+    await authAxios.delete(`${backendUrl}/task/${card._id}`);
+    deleteCard(project, setProject)(list._id, card);
+  };
 
   return (
     <div className="edit-modal">
@@ -91,43 +93,6 @@ const EditCardModal = ({ card, list, setShowModal }) => {
               </button>
             )
           )}
-
-          {/* <div
-                        className="edit-modal__section-header"
-                        style={
-                            card.attachments.length === 0
-                                ? {
-                                      marginBottom: "1.75em",
-                                  }
-                                : null
-                        }
-                    >
-                        <div>
-                            <i className="fal fa-paperclip"></i> Attachments
-                        </div>
-                        <div>
-                            <a className="btn btn--secondary btn--small">
-                                <i className="fal fa-plus"></i> Add
-                            </a>
-                        </div>
-                    </div> */}
-
-          {/* <Attachments attachments={card.attachments} /> */}
-          {/* <CommentForm
-                        card={card}
-                        style={
-                            (comments || []).length === 0
-                                ? { marginBottom: 0 }
-                                : null
-                        }
-                        addComment={addComment}
-                    /> */}
-          {/* <Comments
-                        card={card}
-                        comments={comments || []}
-                        replaceComment={replaceComment}
-                        removeComment={removeComment}
-                    /> */}
         </div>
 
         <div className="edit-modal__right">
@@ -136,36 +101,38 @@ const EditCardModal = ({ card, list, setShowModal }) => {
           </div>
 
           <ul className="edit-modal__actions">
-            {/* <li>
-                            <a className="btn btn--secondary btn--small">
-                                <i className="fal fa-tags"></i> Edit Labels
-                            </a>
-                        </li> */}
             <li>
-              <a className="btn btn--secondary btn--small">
-                <i className="fal fa-user"></i> Change Members
+              <a
+                className="btn btn--secondary btn--small"
+                onClick={() => setShowAssignMemberModal(true)}
+              >
+                <i className="fal fa-user"></i> Assign Member
               </a>
             </li>
-            {/* <li>
-              <a className="btn btn--secondary btn--small">
-                <i className="fal fa-arrow-right"></i> Move
-              </a>
-            </li> */}
             <li>
               <a className="btn btn--secondary btn--small">
                 <i className="fal fa-clock"></i> Change Due Date
               </a>
             </li>
-            {/* <li>
-              <a className="btn btn--secondary btn--small">
-                <i className="fal fa-image"></i> Cover
-              </a>
-            </li> */}
+            <a
+              className="btn btn--secondary btn--small"
+              onClick={handleDeleteCard}
+            >
+              <i className="fal fa-trash"></i> Delete
+            </a>
+            <li></li>
           </ul>
 
-          {/* <Members members={card.assigned_to} /> */}
+          <Members members={card.members} />
         </div>
       </div>
+
+      {showAssignMemberModal && (
+        <AssignMemberModel
+          card={card}
+          setShowAssignMemberModal={setShowAssignMemberModal}
+        />
+      )}
     </div>
   );
 };
@@ -234,137 +201,6 @@ const EditCardDescription = ({ list, card, setEditingDescription }) => {
   );
 };
 
-const Attachments = ({ attachments }) =>
-  attachments.length !== 0 && (
-    <ul className="edit-modal__attachments">
-      {attachments.map((attachment) => (
-        <li key={uuidv4()}>
-          <div className="attachment">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png" />
-            <div className="attachment__content">
-              <div className="attachment__subtitle">
-                {timeSince(attachment.created_at)}
-              </div>
-              <div className="attachment__title">{attachment.title}</div>
-              <div className="attachment__buttons">
-                <a className="btn btn--secondary btn--small">Download</a>
-                <a className="btn btn--secondary btn--small">Delete</a>
-              </div>
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
-
-const Comments = ({ card, comments, replaceComment, removeComment }) => {
-  const { authUser } = useContext(globalContext);
-  const [isEditing, setIsEditing] = useState(false);
-  useBlurSetState('.edit-modal__form--comment', isEditing, setIsEditing);
-
-  if (comments.length === 0) return null;
-
-  const onDelete = async (comment) => {
-    await authAxios.delete(`${backendUrl}/boards/comments/${comment.id}/`);
-    removeComment(comment.id);
-  };
-
-  return (
-    <ul className="edit-modal__comments">
-      {comments.map((comment) => (
-        <li key={uuidv4()}>
-          <div className="comment">
-            <div className="comment__header">
-              <div className="comment__header-left">
-                <ProfilePic user={comment.author} />
-                <div className="comment__info">
-                  <p>{comment.author.full_name}</p>
-                  <p>{timeSince(comment.created_at)}</p>
-                </div>
-              </div>
-              {comment.author.username === authUser.username && (
-                <div className="comment__header-right">
-                  <button onClick={() => setIsEditing(comment.id)}>Edit</button>{' '}
-                  - <button onClick={() => onDelete(comment)}>Delete</button>
-                </div>
-              )}
-            </div>
-            {isEditing !== comment.id ? (
-              <div className="comment__content">{comment.body}</div>
-            ) : (
-              <CommentForm
-                card={card}
-                comment={comment}
-                replaceComment={replaceComment}
-                setIsEditing={setIsEditing}
-              />
-            )}
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-const CommentForm = ({
-  card,
-  comment,
-  style,
-  addComment,
-  replaceComment,
-  setIsEditing,
-}) => {
-  // If comment not null, edit form
-  const [commentBody, setCommentBody] = useState(comment ? comment.body : '');
-
-  const onAddComment = async (e) => {
-    e.preventDefault();
-    if (commentBody.trim() === '') return;
-    const { data } = await authAxios.post(`${backendUrl}/boards/comments/`, {
-      item: card.id,
-      body: commentBody,
-    });
-    addComment(data);
-    setCommentBody('');
-  };
-
-  const onEditComment = async (e) => {
-    e.preventDefault();
-    if (commentBody.trim() === '') return;
-    const { data } = await authAxios.put(
-      `${backendUrl}/boards/comments/${comment.id}/`,
-      {
-        body: commentBody,
-      },
-    );
-    replaceComment(data);
-    setIsEditing(false);
-  };
-
-  // Modifier is only for useBlurSetState, as doc.querySelector is selecting description form otherwise
-  // Only add if comment is not null, otherwise doc.querySelector selects create comment form
-  return (
-    <form
-      className={`edit-modal__form${
-        comment ? ' edit-modal__form--comment' : ''
-      }`}
-      style={style}
-      onSubmit={comment ? onEditComment : onAddComment}
-    >
-      <textarea
-        placeholder="Leave a comment..."
-        value={commentBody}
-        onChange={(e) => setCommentBody(e.target.value)}
-      ></textarea>
-      {commentBody.trim() !== '' && (
-        <button className="btn btn--small" type="submit">
-          Comment
-        </button>
-      )}
-    </form>
-  );
-};
-
 const Members = ({ members }) =>
   members.length !== 0 && (
     <>
@@ -375,7 +211,7 @@ const Members = ({ members }) =>
         {members.map((member) => (
           <li key={uuidv4()}>
             <ProfilePic user={member} />
-            <p>{member.full_name}</p>
+            <p>{member.first_name + ' ' + member.last_name}</p>
           </li>
         ))}
       </ul>
