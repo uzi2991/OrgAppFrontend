@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import "@testing-library/jest-dom";
 import RegisterForm from "../auth/RegisterForm";
 
-test("LoginForm snapshot", () => {
+test("RegisterForm snapshot", () => {
     const registerFormSnapshot = renderer.create(
         <RegisterForm />
     ).toJSON();

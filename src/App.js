@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
 import { Route, Switch } from 'react-router-dom';
-
 import globalContext from './context/globalContext';
 import Header from './components/headers/Header';
 import LandingHeader from './components/headers/LandingHeader';
@@ -26,14 +25,14 @@ function App() {
   if (authUser)
     return (
       <>
-          <Route path="/" component={Header} />
-          <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/project/:id" component={Board} />
-              <Route exact path="/test" component={AddBoardModal} />
-              <Route exact path="/project/:id/info" component={Project} />
-              <Route path="" component={Error404} />
-          </Switch>
+        <Route path="/" component={Header} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/project/:id" component={Board} />
+          <Route exact path="/test" component={AddBoardModal} />
+          <Route exact path="/project/:id/info" component={Project} />
+          <Route path="" component={Error404} />
+        </Switch>
       </>
 
     );

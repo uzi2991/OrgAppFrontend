@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landing snapshot 1`] = `
+<div
+  className="landing-banner"
+>
+  <img
+    className="landing-banner__image"
+    src="bg1.jpg"
+  />
+  <div
+    className="landing-banner__content"
+  >
+    <h1
+      className="landing-banner__title"
+    >
+      Trello lets you work more collaboratively and get more done
+    </h1>
+    <h4
+      className="landing-banner__subtitle"
+    >
+      Trello's boards, lists, and cards enable you to organize and prioritize your projects in a fun, flexible, and rewarding way.
+    </h4>
+    <a
+      className="btn"
+      href="/register"
+      onClick={[Function]}
+    >
+      Sign Up For Free
+    </a>
+  </div>
+</div>
+`;

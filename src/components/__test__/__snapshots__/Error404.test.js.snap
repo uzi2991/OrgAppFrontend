@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error404 snapshot 1`] = `
+<div
+  className="error-page"
+>
+  <img
+    className="error-page__image"
+    src="404.jpg"
+  />
+  <div
+    className="error-page__content"
+  >
+    <h1
+      className="error-page__title"
+    >
+      You look a little lost there
+    </h1>
+    <h4
+      className="error-page__subtitle"
+    >
+      This page may be private. You may be able to view it by
+       
+      <a
+        className="error-page__link"
+        href="/login"
+        onClick={[Function]}
+      >
+        logging in
+      </a>
+    </h4>
+  </div>
+</div>
+`;
