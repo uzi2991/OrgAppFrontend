@@ -878,6 +878,46 @@ input::placeholder {
   margin-left: 0.15em;
 }
 
+.assign-member-modal__form {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+.assign-member-modal__input {
+  padding: 0.5em;
+  flex-grow: 1;
+  margin-bottom: 1.4em;
+  border: 1px rgba(109, 109, 109, 0.55) solid;
+}
+
+.assign-member-modal {
+  z-index: 5;
+  background-color: white;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 1em;
+  border: 1px solid;
+  box-shadow: 2px 4px 2px #888888;
+}
+
+.assign-member-modal__exit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.25rem;
+}
+
+.assign-member-modal__body {
+  margin-top: 20px;
+}
+
 .edit-modal {
   z-index: 4;
   background-color: white;
