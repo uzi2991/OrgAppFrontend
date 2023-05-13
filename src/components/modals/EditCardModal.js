@@ -99,11 +99,11 @@ const EditCardModal = ({ card, list, setShowModal }) => {
               </button>
             )
           )}
-
-          <p>
+	  {tempDate && (<p>
             <i className="fal fa-calendar"></i> Due date:{' '}
             {moment(tempDate).format('DD/MM/yyyy')}
-          </p>
+          </p>)}
+          
         </div>
 
         <div className="edit-modal__right">

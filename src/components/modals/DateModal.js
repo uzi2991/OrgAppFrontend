@@ -28,7 +28,7 @@ const DateModal = ({ card, setShowDateModal, date, setDate }) => {
       <div className="due-date-modal__body">
         <ReactDatePicker
           className="due-date-modal__picker"
-          selected={new Date(date)}
+          selected={date === null ? null : new Date(date)}
           onChange={(date) => {
             setDate(date.toString());
             card.due_date = date.toString();
