@@ -11,12 +11,18 @@ import { updateCard } from '../../static/js/board';
 import ProfilePic from '../boards/ProfilePic';
 import AssignMemberModel from './AssignMemberModal';
 import { deleteCard } from '../../static/js/board';
+import DateModal from './DateModal';
+import moment from 'moment/moment';
 
 const EditCardModal = ({ card, list, setShowModal }) => {
   const [editingTitle, setEditingTitle] = useState(false);
   const [editingDescription, setEditingDescription] = useState(false);
   const [showAssignMemberModal, setShowAssignMemberModal] = useState(false);
+  const [showDateModal, setShowDateModal] = useState(false);
   const { project, setProject } = useContext(globalContext);
+
+  const [tempMembers, setTempMembers] = useState(card.members);
+  const [tempDate, setTempDate] = useState(card.due_date);
 
   useEffect(modalBlurHandler(setShowModal), []);
   useBlurSetState('.edit-modal__title-edit', editingTitle, setEditingTitle);
@@ -93,6 +99,11 @@ const EditCardModal = ({ card, list, setShowModal }) => {
               </button>
             )
           )}
+
+          <p>
+            <i className="fal fa-calendar"></i> Due date:{' '}
+            {moment(tempDate).format('DD/MM/yyyy')}
+          </p>
         </div>
 
         <div className="edit-modal__right">
@@ -110,7 +121,10 @@ const EditCardModal = ({ card, list, setShowModal }) => {
               </a>
             </li>
             <li>
-              <a className="btn btn--secondary btn--small">
+              <a
+                className="btn btn--secondary btn--small"
+                onClick={() => setShowDateModal(true)}
+              >
                 <i className="fal fa-clock"></i> Change Due Date
               </a>
             </li>
@@ -123,14 +137,31 @@ const EditCardModal = ({ card, list, setShowModal }) => {
             <li></li>
           </ul>
 
-          <Members members={card.members} />
+          <Members
+            members={tempMembers}
+            setMembers={setTempMembers}
+            card={card}
+            list={list}
+          />
         </div>
       </div>
 
       {showAssignMemberModal && (
         <AssignMemberModel
           card={card}
+          setMembers={setTempMembers}
           setShowAssignMemberModal={setShowAssignMemberModal}
+          project={project}
+          setProject={setProject}
+        />
+      )}
+
+      {showDateModal && (
+        <DateModal
+          date={tempDate}
+          setDate={setTempDate}
+          card={card}
+          setShowDateModal={setShowDateModal}
         />
       )}
     </div>
@@ -201,21 +232,44 @@ const EditCardDescription = ({ list, card, setEditingDescription }) => {
   );
 };
 
-const Members = ({ members }) =>
-  members.length !== 0 && (
-    <>
-      <div className="edit-modal__section-header">
-        <div>Members</div>
-      </div>
-      <ul className="edit-modal__members">
-        {members.map((member) => (
-          <li key={uuidv4()}>
-            <ProfilePic user={member} />
-            <p>{member.first_name + ' ' + member.last_name}</p>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+const Members = ({ members, setMembers, card, list }) => {
+  const handleDelete = (userId) => async (e) => {
+    try {
+      const { data } = await authAxios.post(
+        `${backendUrl}/task/${card._id}/remove`,
+        {
+          user: userId,
+        },
+      );
 
+      card.members = card.members.filter((member) => member._id !== userId);
+      setMembers(card.members);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  return (
+    members.length !== 0 && (
+      <>
+        <div className="edit-modal__section-header">
+          <div>Members</div>
+        </div>
+        <ul className="edit-modal__members">
+          {members.map((member) => (
+            <li key={uuidv4()}>
+              <ProfilePic user={member} />
+              <p>{member.first_name + ' ' + member.last_name}</p>
+              <button
+                className="edit-modal__remove"
+                onClick={handleDelete(member._id)}
+              >
+                <i className="far fa-times"></i>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  );
+};
 export default EditCardModal;

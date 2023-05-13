@@ -65,6 +65,7 @@ const Card = ({ card, list, provided, isDragging }) => {
           ))}
         <div>
           <p className="card__title">{card.title}</p>
+          <Members members={card.members} />
         </div>
       </div>
       {showEditModal && (

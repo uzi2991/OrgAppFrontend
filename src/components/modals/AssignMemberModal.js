@@ -6,9 +6,14 @@ import { updateCard } from '../../static/js/board';
 import { useContext } from 'react';
 import globalContext from '../../context/globalContext';
 
-const AssignMemberModel = ({ setShowAssignMemberModal, card }) => {
+const AssignMemberModel = ({
+  setShowAssignMemberModal,
+  card,
+  setMembers,
+  project,
+  setProject,
+}) => {
   const [member, setMember] = useState('');
-  const { project, setProject } = useContext(globalContext);
 
   const handleAssign = async (e) => {
     try {
@@ -19,7 +24,11 @@ const AssignMemberModel = ({ setShowAssignMemberModal, card }) => {
         },
       );
 
-      updateCard(project, setProject)(card.list, updatedCard);
+      card.members = updatedCard.members;
+      setMembers(card.members);
+      // updateCard(project, setProject)(card.list, updatedCard);
+
+      setShowAssignMemberModal(false);
     } catch (err) {
       console.log(err);
     }
