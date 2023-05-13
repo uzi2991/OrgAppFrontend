@@ -10,3 +10,4 @@ test("LoginForm snapshot", () => {
 
     expect(loginFormSnapshot).toMatchSnapshot();
 })
+
