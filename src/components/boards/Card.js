@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import moment from 'moment/moment';
 
 import { modalBlurHandler, mergeRefs, authAxios } from '../../static/js/util';
 import ProfilePic from './ProfilePic';
@@ -39,6 +40,16 @@ const Card = ({ card, list, provided, isDragging }) => {
     setShowEditModal(true);
   };
 
+  const getDueDateStyle = () => {
+    if (card.done) {
+      return 'due-date__done';
+    } else if (new Date(card.due_date) <= new Date()) {
+      return 'due-date__expire';
+    }
+
+    return '';
+  };
+
   const { innerRef, draggableProps, dragHandleProps } = provided;
 
   const cardImage = card.image || card.image_url || card.color;
@@ -65,7 +76,15 @@ const Card = ({ card, list, provided, isDragging }) => {
           ))}
         <div>
           <p className="card__title">{card.title}</p>
-          <Members members={card.members} />
+          <div className="card-ex-info">
+            {card.due_date && (
+              <p className={getDueDateStyle()}>
+                <i className="fal fa-calendar"></i>{' '}
+                {moment(card.due_date).format('DD/MM/yyyy')}
+              </p>
+            )}
+            {card.members.length !== 0 && <Members members={card.members} />}
+          </div>
         </div>
       </div>
       {showEditModal && (
@@ -80,7 +99,7 @@ const Card = ({ card, list, provided, isDragging }) => {
 };
 
 const Members = ({ members }) => (
-  <div className="card__members">
+  <div className="card__members card-ex-info__members">
     <div className="member member--add">
       <i className="fal fa-plus"></i>
     </div>

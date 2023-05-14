@@ -18,7 +18,6 @@ const Home = () => {
     addItem: addProject,
     replaceItem: replaceProject,
   } = useAxiosGet('/project/');
-  const { data: recentlyViewedProjects } = useAxiosGet('/project/?sort=recent');
 
   if (!projects) {
     return null;
@@ -33,7 +32,7 @@ const Home = () => {
         />
         <div className="home">
           
-          {(recentlyViewedProjects || []).length !== 0 && (
+          {(projects || []).length !== 0 && (
             <>
               <div className="home__section">
                 <p className="home__title">
@@ -41,7 +40,7 @@ const Home = () => {
                 </p>
               </div>
               <div className="home__boards">
-                {recentlyViewedProjects.map((project) => (
+                {projects.map((project) => (
                   <HomeBoard
                     project={project}
                     replaceProject={replaceProject}

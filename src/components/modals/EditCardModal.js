@@ -23,6 +23,7 @@ const EditCardModal = ({ card, list, setShowModal }) => {
 
   const [tempMembers, setTempMembers] = useState(card.members);
   const [tempDate, setTempDate] = useState(card.due_date);
+  const [tempDone, setTempDone] = useState(card.done);
 
   useEffect(modalBlurHandler(setShowModal), []);
   useBlurSetState('.edit-modal__title-edit', editingTitle, setEditingTitle);
@@ -35,6 +36,24 @@ const EditCardModal = ({ card, list, setShowModal }) => {
   const handleDeleteCard = async (e) => {
     await authAxios.delete(`${backendUrl}/task/${card._id}`);
     deleteCard(project, setProject)(list._id, card);
+  };
+
+  const handleToggleDone = async (e) => {
+    await authAxios.post(`${backendUrl}/task/${card._id}`, {
+      done: !tempDone,
+    });
+    card.done = !tempDone;
+    setTempDone(!tempDone);
+  };
+
+  const getDueDateStyle = () => {
+    if (card.done) {
+      return 'due-date__done';
+    } else if (new Date(card.due_date) <= new Date() ) {
+      return 'due-date__expire';
+    }
+
+    return '';
   };
 
   return (
@@ -99,11 +118,17 @@ const EditCardModal = ({ card, list, setShowModal }) => {
               </button>
             )
           )}
-	  {tempDate && (<p>
-            <i className="fal fa-calendar"></i> Due date:{' '}
-            {moment(tempDate).format('DD/MM/yyyy')}
-          </p>)}
-          
+          {tempDate && (
+            <p className={getDueDateStyle()}>
+              <i className="fal fa-calendar"></i> Due date:{' '}
+              {moment(tempDate).format('DD/MM/yyyy')}
+              <input
+                type="checkbox"
+                checked={tempDone}
+                onChange={handleToggleDone}
+              />
+            </p>
+          )}
         </div>
 
         <div className="edit-modal__right">

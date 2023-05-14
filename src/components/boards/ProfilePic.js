@@ -6,7 +6,7 @@ const hashName = (str) => {
     res += str.charCodeAt(i);
   }
 
-  return res + 1; // So my name maps to blue
+  return res + 1;
 };
 
 const colors = ['red', 'yellow', 'blue'];
