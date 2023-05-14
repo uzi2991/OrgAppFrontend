@@ -120,7 +120,6 @@ const CreateList = ({ project, setProject, setAddingList }) => {
       project: project._id,
       title,
     });
-    console.log(data);
     addList(project, setProject)(data);
     setAddingList(false);
   };
@@ -152,7 +151,6 @@ const EditBoard = ({ project, setProject, setEditingTitle }) => {
 
   const onEditTitle = async (e) => {
     e.preventDefault();
-    console.log('Submit');
     if (title.trim() === '') return;
     const { data } = await authAxios.post(
       `${backendUrl}/project/${project._id}/`,
