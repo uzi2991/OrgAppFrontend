@@ -13,7 +13,6 @@ import { useHistory } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import InviteMembersModal from '../components/modals/InviteMembersModal';
-import ChangePermissionsModal from '../components/modals/ChangePermissionsModal';
 import Error404 from './Error404';
 
 const defaultImageUrl =

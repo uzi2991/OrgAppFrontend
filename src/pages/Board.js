@@ -15,8 +15,9 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 const getBoardStyle = (project) => {
   if (project.image || project.image_url)
     return {
-      backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) ), url(${project.image || project.image_url
-        })`,
+      backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) ), url(${
+        project.image || project.image_url
+      })`,
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
@@ -122,6 +123,7 @@ const CreateList = ({ project, setProject, setAddingList }) => {
     });
     addList(project, setProject)(data);
     setAddingList(false);
+    setTitle('');
   };
 
   return (

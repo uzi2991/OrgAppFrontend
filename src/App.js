@@ -3,16 +3,16 @@ import { Route, Switch } from 'react-router-dom';
 import globalContext from './context/globalContext';
 import Header from './components/headers/Header';
 import LandingHeader from './components/headers/LandingHeader';
-import AddBoardModal from "./components/modals/AddBoardModal";
 import Landing from './pages/Landing';
 import Login from './pages/Login';
-import Home from "./pages/Home";
-import Board from "./pages/Board";
-import Project from "./pages/Project";
-import Error404 from "./pages/Error404";
+import Home from './pages/Home';
+import Board from './pages/Board';
+import Project from './pages/Project';
+import Error404 from './pages/Error404';
 
 function App() {
-  const { checkAuth, checkedAuth, authUser, logout } = useContext(globalContext);
+  const { checkAuth, checkedAuth, authUser, logout } =
+    useContext(globalContext);
 
   useEffect(() => {
     checkAuth();
@@ -29,12 +29,10 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/project/:id" component={Board} />
-          <Route exact path="/test" component={AddBoardModal} />
           <Route exact path="/project/:id/info" component={Project} />
           <Route path="" component={Error404} />
         </Switch>
       </>
-
     );
   else
     return (
