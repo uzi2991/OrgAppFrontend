@@ -2,9 +2,10 @@ import { backendUrl } from '../../../static/js/const';
 import axios from 'axios';
 
 describe('API Register User', () => {
+    let id;
     it('should register a new user', async () => {
         const userData = {
-            email: 'exampl@gmail.com',
+            email: 'exampleeee@gmail.com',
             password: '12345678',
             first_name: 'John',
             last_name: 'Doe'
@@ -12,6 +13,8 @@ describe('API Register User', () => {
         const url = `${backendUrl}/auth/signup`;
         const response = await axios.post(url, userData);
         expect(response.status).toBe(201);
+
+        id = response.data._id;
     });
     it('email already exists', async () => {
         const userData = {
@@ -28,4 +31,13 @@ describe('API Register User', () => {
             expect(error.response.status).toBe(400);
         }
     });
+    // afterAll(async () => {
+    //     // Xóa tài khoản đã tạo trong quá trình test
+    //     const deleteAccountUrl = `${backendUrl}/user/${id}`;
+    //     await axios.delete(deleteAccountUrl, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     });
+    //   });
 });

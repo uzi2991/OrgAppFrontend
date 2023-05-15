@@ -6,10 +6,10 @@ context('Testing sign up', () => {
     })
 
     it('Create new account', () => {
-        cy.get('input[placeholder="First Name"]').type('nghia');
-        cy.get('input[placeholder="Last Name"]').type('vip');
+        cy.get('input[placeholder="First Name"]').type('Quy');
+        cy.get('input[placeholder="Last Name"]').type('Nghia2');
         cy.contains('Next').click()
-        cy.get('input[placeholder="Email"]').type('nghiadeptrai@gmail.com');
+        cy.get('input[placeholder="Email"]').type('NguyenQuyNghia2@gmail.com');
         cy.get('input[placeholder="Password"]').type('12345678');
         cy.contains('Sign Up').click()
     })
