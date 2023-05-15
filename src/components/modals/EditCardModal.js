@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import Labels from '../boards/Labels';
 import useAxiosGet from '../../hooks/useAxiosGet';
 import useBlurSetState from '../../hooks/useBlurSetState';
 import globalContext from '../../context/globalContext';

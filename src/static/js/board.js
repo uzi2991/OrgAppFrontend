@@ -44,13 +44,13 @@ const onDragEndItem = (board, setBoard, result) => {
     return; // Position didn't change
 
   const sourceList = board.lists.find(
-    (list) => list.id.toString() === source.droppableId,
+    (list) => list._id.toString() === source.droppableId,
   );
   const item = sourceList.items.find(
-    (item) => item.id.toString() === draggableId,
+    (item) => item._id.toString() === draggableId,
   );
   const destinationList = board.lists.find(
-    (list) => list.id.toString() === destination.droppableId,
+    (list) => list._id.toString() === destination.droppableId,
   );
 
   const newItems = [...sourceList.items];
@@ -74,8 +74,8 @@ const onDragEndItem = (board, setBoard, result) => {
   };
 
   const newLists = board.lists.map((list) => {
-    if (list.id === newList.id) return newList;
-    else if (list.id === newList2.id) return newList2;
+    if (list._id === newList._id) return newList;
+    else if (list._id === newList2._id) return newList2;
     return list;
   });
 
@@ -97,13 +97,13 @@ const onDragEndItemBackend = async (board, setBoard, result) => {
     return; // Position didn't change
 
   const sourceList = board.lists.find(
-    (list) => list.id.toString() === source.droppableId,
+    (list) => list._id.toString() === source.droppableId,
   );
   const item = sourceList.items.find(
-    (item) => item.id.toString() === draggableId,
+    (item) => item._id.toString() === draggableId,
   );
   const destinationList = board.lists.find(
-    (list) => list.id.toString() === destination.droppableId,
+    (list) => list._id.toString() === destination.droppableId,
   );
 
   const newOrder = getNewOrder(
@@ -111,16 +111,6 @@ const onDragEndItemBackend = async (board, setBoard, result) => {
     destination.index,
     destinationList.items,
   );
-  const { data } = await authAxios.put(
-    `${backendUrl}/boards/items/${item.id}/`,
-    {
-      title: item.title,
-      order: newOrder,
-      list: destinationList.id,
-    },
-  );
-
-  updateCard(board, setBoard)(destinationList.id, data);
 };
 
 const onDragEndList = (board, setBoard, result) => {
@@ -129,7 +119,7 @@ const onDragEndList = (board, setBoard, result) => {
   if (source.index === destination.index) return; // Position didn't change, no need to compare droppableIds as only one droppable
 
   const list = board.lists.find(
-    (list) => 'list' + list.id.toString() === draggableId,
+    (list) => 'list' + list._id.toString() === draggableId,
   );
 
   const newLists = [...board.lists];
@@ -149,19 +139,10 @@ const onDragEndListBackend = async (board, setBoard, result) => {
   if (!destination) return; // Dropped outside of board
   if (source.index === destination.index) return; // Position didn't change, no need to compare droppableIds as only one droppable
   const list = board.lists.find(
-    (list) => 'list' + list.id.toString() === draggableId,
+    (list) => 'list' + list._id.toString() === draggableId,
   );
 
   const newOrder = getNewOrder(source.index, destination.index, board.lists);
-
-  const { data } = await authAxios.put(
-    `${backendUrl}/boards/lists/${list.id}/`,
-    {
-      title: list.title,
-      order: newOrder,
-    },
-  );
-  updateList(board, setBoard)(data);
 };
 
 export const addList = (board, setBoard) => (list) => {
@@ -252,33 +233,3 @@ export const deleteCard = (_, setProject) => (listId, deletedCard) => {
   });
 };
 
-// Filter boards into user boards and project boards
-export const filterBoards = (boards) => {
-  const starredBoards = [];
-  const userBoards = []; // Array of board objects
-  const projectBoards = []; // Array of project objects with boards key as we need titles
-  if (!boards) return [userBoards, projectBoards, starredBoards];
-
-  for (let i = 0; i < boards.length; i++) {
-    let board = boards[i];
-    if ('title' in board.owner) {
-      let project = projectBoards.find(
-        (project) => project.title === board.owner.title,
-      );
-      if (!project) {
-        projectBoards.push({
-          title: board.owner.title,
-          id: board.owner.id,
-          boards: [board],
-        });
-      } else {
-        project.boards.push(board);
-      }
-    } else {
-      userBoards.push(board);
-    }
-    if (board.is_starred) starredBoards.push(board);
-  }
-
-  return [userBoards, projectBoards, starredBoards];
-};

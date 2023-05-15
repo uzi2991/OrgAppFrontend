@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-import AddBoardModal from '../components/modals/AddBoardModal';
 import HomeSidebar from '../components/sidebars/HomeSidebar';
 import HomeBoard from '../components/boards/HomeBoard';
 import CreateTeamModal from '../components/modals/CreateTeamModal';
 import useAxiosGet from '../hooks/useAxiosGet';
 import useDocumentTitle from '../hooks/useDocumentTitle';
-import { filterBoards } from '../static/js/board';
 
 const Home = () => {
   useDocumentTitle('Projects | Trello');
