@@ -48,6 +48,7 @@ const List = ({ list, index }) => {
     });
     setAddingCard(false);
     addCard(project, setProject)(list._id, data);
+    setCardTitle('');
   };
 
   const listCards = useRef(null);

@@ -15,7 +15,7 @@ const HomeBoard = ({ project, replaceProject }) => {
       >
         {project.title}
       </p>
-      {project.members && <Members members={project.members} />}
+      {/* {project.members && <Members members={project.members} />} */}
     </Link>
   );
 };
